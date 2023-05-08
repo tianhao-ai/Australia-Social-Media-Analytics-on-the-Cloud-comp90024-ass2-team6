@@ -1,0 +1,44 @@
+- name: Deploy Python script in a Docker container
+  hosts: remote_instance
+  become: yes
+  vars:
+    python_script: "{{ hostvars[inventory_hostname].python_script_path | basename }}"
+    docker_image: my_python_app
+    docker_container: my_python_app_container
+
+  tasks:
+    - name: Ensure Docker service is running
+      ansible.builtin.service:
+        name: docker
+        state: started
+
+    - name: Copy the Python script to the remote instance
+      ansible.builtin.copy:
+        src: "{{ python_script }}"
+        dest: "/tmp/{{ python_script }}"
+        mode: 0644
+
+    - name: Create a Dockerfile
+      ansible.builtin.copy:
+        content: |
+          FROM python:3.8
+          RUN pip install Mastodon.py beautifulsoup4 nltk requests
+          COPY {{ python_script }} /app/{{ python_script }}
+          CMD ["python", "/app/{{ python_script }}"]
+        dest: "/tmp/Dockerfile"
+
+    - name: Build the Docker image
+      ansible.builtin.docker_image:
+        name: "{{ docker_image }}"
+        source: build
+        build:
+          path: /tmp
+          dockerfile: /tmp/Dockerfile
+
+    - name: Run the Docker container
+      ansible.builtin.docker_container:
+        name: "{{ docker_container }}"
+        image: "{{ docker_image }}"
+        state: started
+        restart_policy: unless-stopped
+        network_mode: "host"
