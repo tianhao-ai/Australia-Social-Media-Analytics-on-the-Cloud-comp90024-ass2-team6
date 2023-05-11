@@ -3,8 +3,8 @@
   become: yes
   vars:
     python_script: "{{ hostvars[inventory_hostname].python_script_path | basename }}"
-    docker_image: my_python_app
-    docker_container: my_python_app_container
+    docker_image: my_python_app_crawler_final
+    docker_container: my_python_app_crawler_container_final
 
   tasks:
     - name: Ensure Docker service is running
@@ -22,7 +22,7 @@
       ansible.builtin.copy:
         content: |
           FROM python:3.8
-          RUN pip install Mastodon.py beautifulsoup4 nltk requests
+          RUN pip install Mastodon.py beautifulsoup4 nltk requests profanity
           COPY {{ python_script }} /app/{{ python_script }}
           CMD ["python", "/app/{{ python_script }}"]
         dest: "/tmp/Dockerfile"
@@ -42,3 +42,4 @@
         state: started
         restart_policy: unless-stopped
         network_mode: "host"
+
