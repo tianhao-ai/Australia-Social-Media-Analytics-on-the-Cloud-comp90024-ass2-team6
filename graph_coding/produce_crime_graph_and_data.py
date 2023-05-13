@@ -17,7 +17,7 @@ for row in view_data["rows"]:
 
 # Print the result
 print(json.dumps(gcc_keyword_counts, indent=4))
-with open('../graph data/tweetContainCrimeGcc.json', 'w') as json_file:
+with open('../graph_data/tweetContainCrimeGcc.json', 'w') as json_file:
     json.dump(gcc_keyword_counts, json_file, indent=4)
 url = "http://group6:123456@172.26.131.122:5984/crime_lang_tweet/_design/groupGccCrimeKeywordsRank/_view/my_view?group_level=1"
 
@@ -32,7 +32,7 @@ for row in view_data["rows"]:
 
 # Print the result
 print(json.dumps(gcc_keyword_counts, indent=4))
-with open('../graph data/eachCrimeKeywordGcc.json', 'w') as json_file:
+with open('../graph_data/eachCrimeKeywordGcc.json', 'w') as json_file:
     json.dump(gcc_keyword_counts, json_file, indent=4)
 # Convert the dictionary to a pandas DataFrame
 df = pd.DataFrame(gcc_keyword_counts)
