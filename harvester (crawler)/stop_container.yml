@@ -1,0 +1,11 @@
+- name: Stop Docker container
+  hosts: remote_instance
+  become: yes
+  vars:
+    docker_container: my_python_app_crawler_container_final
+
+  tasks:
+    - name: Stop the Docker container
+      ansible.builtin.docker_container:
+        name: "{{ docker_container }}"
+        state: stopped
