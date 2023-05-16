@@ -4,7 +4,7 @@ import json
 import os
 import re
 from bs4 import BeautifulSoup
-from profanity import profanity
+from better_profanity import profanity
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
