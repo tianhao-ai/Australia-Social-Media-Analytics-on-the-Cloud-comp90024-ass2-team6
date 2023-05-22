@@ -1,0 +1,8 @@
+---
+- name: add NectarGroupKey
+  copy:
+    src: "config/instance-key.pem"
+    dest: ~/.ssh/instance-key.pem
+    #    owner: ubuntu
+    #    group: ubuntu
+    mode: 0600

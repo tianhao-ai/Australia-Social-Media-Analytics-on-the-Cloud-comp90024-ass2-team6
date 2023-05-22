@@ -1,0 +1,77 @@
+ 
+
+- name: Authenticate to CouchDB and set session cookie
+  uri:
+    url: "http://{{ groups['masternode'][0] }}:{{ couchdb_port }}/_session"
+    method: POST
+    body: "name={{ couchdb_user }}&password={{ couchdb_pass }}"
+    status_code: 200
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    return_content: yes
+  register: login_result
+
+- name: Set CouchDB session from login
+  set_fact:
+    couchdb_session: "{{ login_result.content | regex_search('session=(.*)$') | regex_replace('.*=(.*)$', '\\1') }}"
+
+- name: Setup CouchDB cluster - Step 1
+  become: yes
+  ansible.builtin.uri:
+    url: "http://{{ groups['masternode'][0] }}:{{ couchdb_port }}/{{ cluster_name }}"
+    method: POST
+    user: "{{ couchdb_user }}"
+    password: "{{ couchdb_pass }}"
+    force_basic_auth: yes
+    return_content: yes
+    status_code: 201
+    headers:
+      Content-Type: "application/json"
+      Cookie: "{{ couchdb_session }}"
+    body_format: json
+    body: |
+      {
+        "action": "enable_cluster",
+        "bind_address": "0.0.0.0",
+        "username": "{{ couchdb_user }}",
+        "password": "{{ couchdb_pass }}",
+        "port": "{{ couchdb_port }}",
+        "remote_node": "{{ item }}",
+        "node_count": "{{ groups['database'] | length }}",
+        "remote_current_user": "{{ couchdb_user }}",
+        "remote_current_password": "{{ couchdb_pass }}"
+      }
+      
+  loop: "{{ groups['workers'] }}"
+
+- name: setup couchdb cluster | step 2
+  become: yes
+  uri:
+    url: http://{{ groups['masternode'][0] }}:{{couchdb_port}}/{{ cluster_name }}
+    status_code: 201,409
+    method: POST
+    user: "{{ couchdb_user }}"
+    password:  "{{ couchdb_pass }}"
+    force_basic_auth: yes
+    return_content: yes
+    body_format: json
+    body: "{\"action\": \"add_node\", \"host\":\"{{ item }}\",\
+             \"port\": \"{{ couchdb_port }}\", \"username\": \"{{ couchdb_user }}\", \"password\":\"{{ couchdb_pass }}\"}"
+    headers:
+      Content-Type: "application/json"
+      Cookie: "{{ couchdb_session }}"
+
+  loop: "{{ groups['workers'] }}"
+
+- name: setup couchdb cluster | step 2.5
+  become: yes
+  uri:
+    url: http://{{ groups['masternode'][0] }}:{{couchdb_port}}/
+    status_code: 200,201,409
+    method: GET
+    user: "{{ couchdb_user }}"
+    password:  "{{ couchdb_pass }}"
+    force_basic_auth: yes
+    return_content: yes
+
+

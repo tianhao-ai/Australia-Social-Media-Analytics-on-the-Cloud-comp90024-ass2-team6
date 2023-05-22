@@ -1,0 +1,44 @@
+---
+# - name: Stop the Docker container
+#   docker_container:
+#     name: "{{ couchdb_container_name}}"
+#     state: stopped
+
+- name: Remove the Docker container
+  docker_container:
+    name: "{{ couchdb_container_name}}"
+    state: absent
+
+- name: Set permissions for the data directory
+  become: yes
+  file:
+    path: /home/ubuntu/data
+    mode: "0777"
+    recurse: yes
+
+- name: Create directory
+  become: yes
+  file:
+    path: "{{ couchdb_data_dir }}"
+    state: directory
+    mode: "0777"
+
+- name: Start a container with a couchdb
+  become: yes
+  docker_container:
+    name: "{{ couchdb_container_name}}"
+    image: "{{ couchdb_image }}"
+    ports:
+      - "9100:9100"
+      - "{{couchdb_port}}:5984"
+      - "4369:4369"
+    volumes:
+      - "{{couchdb_data_dir}}:/opt/couchdb/data"
+    env:
+      COUCHDB_PASSWORD: "{{ couchdb_pass }}"
+      COUCHDB_USER: "{{ couchdb_user }}"
+      NODENAME: "{{ ansible_host }}"
+      COUCHDB_SECRET: "{{ couchdb_cookie }}"
+
+      
+ 
