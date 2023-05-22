@@ -4,7 +4,7 @@ After deployed all necessary container, some python script could be help to prod
 In addition, we also have necessary file that store the HTML and Javascript of the website.
 # Getting Started
 In planning stage, our initial deployment were planned as following picture:
-<img src="/path/to/img.jpg" alt="Alt text" title="Optional title">
+<img src="Graph/pipeline.jpeg" alt="pipeline" title="System Architecture">
 # 1. Creating an Instance in your Cloud
 First, navigate to the `ansible & docker/deploy_instance` directory.
 ```
