@@ -1,7 +1,9 @@
 # CCC-ass2-team6
-Welcome to the CCC-ass2-team6 repository. This repository is set up to allow you to deploy a ubuntu instance in MRC, deployed couchDB instance, and Wordpress instance in your cloud, run a Mastodon harvester in docker container, and perform regular disk usage checks on your instance
+Welcome to the CCC-ass2-team6 repository. This repository is set up to allow you to deploy a ubuntu instance in MRC, deployed couchDB instance, and Wordpress instance in your cloud, run a Mastodon harvester in docker container, and perform regular disk usage checks on your instance. 
+After deployed all necessary container, some python script could be help to produce some useful analysis of stream data and Twitter historical data, and the python script contains MapReduce function would help to distributed to task of analysis into multiple process.
+In addition, we also have necessary file that store the HTML and Javascript of the website.
 # Getting Started
-Follow the steps below to run the project.
+In planning stage, our initial deployment would be planned as following picture
 # 1. Creating an Instance in your Cloud
 First, navigate to the `ansible & docker/deploy_instance` directory.
 ```
