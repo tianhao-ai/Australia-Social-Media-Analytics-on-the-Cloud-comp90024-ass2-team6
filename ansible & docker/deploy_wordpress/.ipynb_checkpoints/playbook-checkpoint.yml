@@ -1,0 +1,56 @@
+- name: Deploy WordPress using Docker
+  hosts: remote
+  become: yes
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - docker.io
+          - python3-pip
+        state: present
+
+    - name: Install Docker Python library
+      pip:
+        name: docker
+
+    - name: Pull WordPress image
+      docker_image:
+        name: wordpress
+        source: pull
+        state: present
+
+    - name: Pull MySQL image
+      docker_image:
+        name: mysql:5.7
+        source: pull
+        state: present
+
+    - name: Start MySQL container
+      docker_container:
+        name: mysql
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: your_mysql_root_password
+          MYSQL_DATABASE: wordpress
+          MYSQL_USER: wordpress
+          MYSQL_PASSWORD: your_wordpress_db_password
+        volumes:
+          - /var/lib/mysql:/var/lib/mysql
+        state: started
+        restart_policy: always
+
+    - name: Start WordPress container
+      docker_container:
+        name: wordpress
+        image: wordpress
+        env:
+          WORDPRESS_DB_HOST: mysql
+          WORDPRESS_DB_NAME: wordpress
+          WORDPRESS_DB_USER: wordpress
+          WORDPRESS_DB_PASSWORD: your_wordpress_db_password
+        links:
+          - mysql:mysql
+        ports:
+          - "80:80"
+        state: started
+        restart_policy: always

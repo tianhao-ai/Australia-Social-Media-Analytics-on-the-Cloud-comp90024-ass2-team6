@@ -1,0 +1,29 @@
+- name: Deploy disk monitoring script
+  hosts: nodes
+  become: yes
+  vars:
+    script_path: /usr/local/bin/disk_monitor.sh
+    cron_minute: "*/10" # adjust as needed
+
+  tasks:
+    - name: Copy disk monitoring script
+      copy:
+        content: |
+          #!/bin/bash
+          # Check free disk space
+          DISK_USAGE=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')
+          # Define a threshold for disk usage (for example 90%)
+          THRESHOLD=90
+          if [ "$DISK_USAGE" -gt "$THRESHOLD" ]
+          then
+              # Stop the Docker container
+              docker stop my_python_app_crawler_container_final
+          fi
+        dest: "{{ script_path }}"
+        mode: 0755
+
+    - name: Schedule disk monitoring script
+      cron:
+        name: "Disk space monitor"
+        minute: "{{ cron_minute }}"
+        job: "{{ script_path }}"
