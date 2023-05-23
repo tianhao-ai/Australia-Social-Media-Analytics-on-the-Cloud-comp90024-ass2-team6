@@ -21,7 +21,7 @@ cd ansible & docker/deploy_wordpress
 # 3. Deploying the Mastodon Harvester
 Once you have your instance set up with Wordpress, navigate to the `harvester (crawler)` directory.
 ```
-cd ansible & docker/harvester (crawler)
+cd harvester (crawler)
 ```
 Follow the instructions in the README within this directory to deploy the Mastodon harvester.
 After the deployment of above 3 stages, your node might works like below:
