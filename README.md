@@ -6,6 +6,8 @@ In addition, we also have necessary file that store the HTML and Javascript of t
 In planning stage, our initial deployment were planned as following picture:
 <img src="Graph/pipeline.png" alt="pipeline" title="System Architecture">
 # 1. Creating an Instance in your Cloud
+In planning stage, the deployment of instance use following configuration:
+<img src="Graph/instance_config.png" alt="deployment config" title="System Architecture">
 First, navigate to the `ansible & docker/deploy_instance` directory.
 ```
 cd ansible & docker/deploy_instance
