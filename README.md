@@ -26,7 +26,7 @@ cd harvester (crawler)
 Follow the instructions in the README within this directory to deploy the Mastodon harvester.
 After the deployment of above 3 stages, your node might works like below:
 <img src="Graph/instance_connect.png" alt="instance connection" title="System Architecture">
-# 4. Deploying the Disk Usage Check Script
+# 4. Deploying the Disk Usage Check Script(optional)
 Finally, navigate to the `ansible & docker/error_handling` directory.
 ```
 cd ansible & docker/error_handling
