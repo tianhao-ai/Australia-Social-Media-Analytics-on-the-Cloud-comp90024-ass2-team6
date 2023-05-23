@@ -1,0 +1,20 @@
+- name: Get disk information for hosts
+  hosts: 172.26.129.81,172.26.134.83,172.26.128.201,172.26.129.156
+  
+  vars_files:
+    - host_vars/config.yaml
+    - host_vars/deploy.yaml
+    - host_vars/instances.yaml
+  
+  gather_facts: yes
+  gather_subset: hardware
+  tasks: 
+    - name: 11
+      command: sudo df -h
+      register: output
+
+    - name: Print command output
+      debug:
+        var: output.stdout_lines
+
+        # ansible-playbook check_stat.yaml -i inventory/application_hosts.ini
