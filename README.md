@@ -32,3 +32,9 @@ Finally, navigate to the `ansible & docker/error_handling` directory.
 cd ansible & docker/error_handling
 ```
 Follow the instructions in the README within this directory to deploy the shell script that regularly checks disk usage in your instance. If disk usage reaches 90%, the script will stop the container from collecting data to prevent overload.
+# 5. Uploading the data to couchdb or creating any necessary analysis
+Finally, navigate to the `data_processing_mapreduce & upload_to_couchdb` directory.
+```
+cd data_processing_mapreduce & upload_to_couchdb
+```
+Follow the instructions in the README within this directory.
