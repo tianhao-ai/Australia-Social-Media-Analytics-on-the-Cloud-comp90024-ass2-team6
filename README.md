@@ -44,4 +44,7 @@ navigate to the `graph_coding` directory.
 cd graph_coding
 ```
 Following the readme in the folder would created the necessary data to plotting graph
+# 7. LDA Model
+Running from top to down of the file `Model/LDA_bad_word.ipynb` would generate the `result` file
+which could visualized a cluster of topic.
 
