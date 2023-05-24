@@ -38,3 +38,10 @@ Finally, navigate to the `data_processing_mapreduce & upload_to_couchdb` directo
 cd data_processing_mapreduce & upload_to_couchdb
 ```
 Follow the instructions in the README within this directory.
+# 6. Extracting the grouping data could plot the graph
+navigate to the `graph_coding` directory. 
+```
+cd graph_coding
+```
+Following the readme in the folder would created the necessary data to plotting graph
+
