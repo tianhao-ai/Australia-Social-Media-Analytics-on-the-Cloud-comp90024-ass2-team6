@@ -10,3 +10,8 @@ Navigate to the file `sudo_data_upload`
 ```
 cd sudo_data_upload
 ```
+# 3. Creating the view on each database through MapReduce function
+Navigate to the file `mapreduce_create_view`
+```
+cd mapreduce_create_view
+```
