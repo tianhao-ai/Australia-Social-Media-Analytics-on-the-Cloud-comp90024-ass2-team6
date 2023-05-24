@@ -5,3 +5,8 @@ Navigate to the file `upload_twitter_data`
 ```
 cd upload_twitter_data
 ```
+# 2. Uploading the SUDO related data to couchDB if you need(optional)
+Navigate to the file `sudo_data_upload`
+```
+cd sudo_data_upload
+```
