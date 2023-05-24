@@ -5,6 +5,8 @@ Navigate to the file `upload_twitter_data`
 ```
 cd upload_twitter_data
 ```
+and our mpi upload pipeline are looks like below:
+<img src="../Graph/mpi_pipeline.png" alt="mpi" title="mpi">
 # 2. Uploading the SUDO related data to couchDB if you need(optional)
 Navigate to the file `sudo_data_upload`
 ```
