@@ -1,0 +1,18 @@
+- Ansible: >=2.9.0
+- Python: >=3.6
+- requests
+- couchdb
+- pandas
+- openMPI
+- mpi4py
+- nltk
+- matplotlib
+- numpy
+- seaborn
+- wordcloud
+- itertools
+- pyLDAvis
+- pickle
+- mastodon
+- bs4
+- better_profanity
