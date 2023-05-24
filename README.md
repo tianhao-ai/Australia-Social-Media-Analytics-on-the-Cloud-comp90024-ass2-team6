@@ -47,4 +47,9 @@ Following the readme in the folder would created the necessary data to plotting 
 # 7. LDA Model
 Running from top to down of the file `Model/LDA_bad_word.ipynb` would generate the `result` file
 which could visualized a cluster of topic.
+# Other files
+Some other folders might not documented above, and their functionality would listed below:
+* `frontend` : since we using wordpress for our website application, so only the file we additionly use to produce extra functionality in website would put in here
+* `SUDO_Data`: These file is for placing the file we collected from sudo
+* `report`: These file would be used to placed our final report
 
