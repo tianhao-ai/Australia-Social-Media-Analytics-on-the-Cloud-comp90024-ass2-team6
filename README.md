@@ -3,7 +3,7 @@ Welcome to the CCC-ass2-team6 repository. This repository is set up to allow you
 After deployed all necessary container, some python script could be help to produce some useful analysis of stream data and Twitter historical data, and the python script contains MapReduce function would help to distributed task of analysis into multiple process.
 In addition, we also have necessary file that store the HTML and Javascript of the website.
 # Getting Started
-Before getting start, ensure you read the `requirments.txt` , and have necessary package
+Before getting start, ensure you read the `requirements.txt` , and have necessary package
 In planning stage, our initial deployment were planned as following picture:
 <img src="Graph/pipeline.png" alt="pipeline" title="System Architecture">
 # 1. Creating an Instance in your Cloud
