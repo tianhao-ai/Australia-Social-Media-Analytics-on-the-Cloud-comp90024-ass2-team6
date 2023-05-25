@@ -54,4 +54,4 @@ Some other folders might not documented above, and their functionality would lis
 * `SUDO_Data`: These file is for placing the file we collected from sudo
 * `report`: These file would be used to placed our final report
 # Acknowledgments
-This program was created as a project for COMP90024 Cluster and Cloud Computing at University of Melbourne. Special thanks to Prof.Richard Sinnott for their guidance and support.
+This program was created as a project for COMP90024 Cluster and Cloud Computing at University of Melbourne. Special thanks to teaching teams :Prof.Richard Sinnott, Researchers Yao (Alwyn) Pan, Cloud Architect Luca Morandini and other staff for their guidance and support.
